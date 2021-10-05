@@ -1,68 +1,75 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Element } from 'react-scroll';
+import { GeneralFontSize, GeneralText } from 'components/styles/GeneralTextStyle';
+import DEVISE_QUERY from 'consts/DeviseSize';
+import { GeneralColors } from 'consts/StyleConsts';
 import { NavigationHeader, WorkCard, SectionTitle } from './components';
 import { spacing } from './utils/StyleUtils';
-import { GeneralColors, GeneralFontSize } from './consts/StyleConsts';
 
 function App() {
   return (
-    <div>
-      {/* Header  Area */}
+    <Container>
       <NavigationHeader />
-      {/* Header  Area */}
       <TopSection>
-        {/* Main Picture Area */}
         <MainPictureWrapper>
           <MainPicture>
-            <p>TexttextTexttextTexttextTexttext</p>
+            <GeneralText
+              fontSize={GeneralFontSize.TITLE}
+              fontColor="#fff"
+              responsiveFontSize={GeneralFontSize.TITLE_MOBILE}
+            >
+              TexttextTexttextTexttextTexttext
+            </GeneralText>
           </MainPicture>
         </MainPictureWrapper>
-        {/* Main Picture Area */}
       </TopSection>
-
-      {/* WORKS Section */}
-      <Section>
-        <TitleWrapper name="works">
-          <SectionTitle title="WORKS" subtitle="仕事" />
-        </TitleWrapper>
-        <WorkList>
-          <WorkCard />
-          <WorkCard />
-          <WorkCard />
-        </WorkList>
-      </Section>
-      {/* WORKS Section */}
-
-      {/* ABOUT Section */}
-      <Section>
-        <Bcg>
-          <TitleWrapper name="about">
-            <SectionTitle title="ABOUT" subtitle="紹介" />
+      <Content>
+        <Section>
+          <TitleWrapper name="works">
+            <SectionTitle title="WORKS" subtitle="仕事" />
           </TitleWrapper>
-          <About>
-            <AboutDescription>
-              AboutDescriptionHereAboutDescriptionHereAboutDescriptionHereAboutDescriptionHere AboutDescriptionHere
-              AboutDescriptionHere AboutDescriptionHereAboutDescriptionHereAboutDescriptionHere
-            </AboutDescription>
-            <AboutImage src={`${process.env.PUBLIC_URL}/images/about_image.jpg`} />
-          </About>
-        </Bcg>
-      </Section>
-      {/* ABOUT Section */}
-
-      {/* CONTACT Section */}
-      <Section>
-        <TitleWrapper name="contact">
-          <SectionTitle title="CONTACT" subtitle="連絡" />
-        </TitleWrapper>
-      </Section>
-      {/* CONTACT Section */}
-    </div>
+          <WorkList>
+            <WorkCard />
+            <WorkCard />
+            <WorkCard />
+          </WorkList>
+        </Section>
+        <Section>
+          <Bcg>
+            <TitleWrapper name="about">
+              <SectionTitle title="ABOUT" subtitle="紹介" />
+            </TitleWrapper>
+            <About>
+              <AboutDescription>
+                AboutDescriptionHereAboutDescriptionHereAboutDescriptionHereAboutDescriptionHere AboutDescriptionHere
+                AboutDescriptionHere AboutDescriptionHereAboutDescriptionHereAboutDescriptionHere
+              </AboutDescription>
+              <AboutImage src={`${process.env.PUBLIC_URL}/images/about_image.jpg`} />
+            </About>
+          </Bcg>
+        </Section>
+        <Section>
+          <TitleWrapper name="contact">
+            <SectionTitle title="CONTACT" subtitle="連絡" />
+          </TitleWrapper>
+        </Section>
+      </Content>
+    </Container>
   );
 }
 
 export default App;
+
+const Content = styled.div`
+  &:first-child {
+    margin-top: 0;
+  }
+`;
+
+const Container = styled.div`
+  position: relative;
+`;
 
 const TopSection = styled.div`
   height: calc(100vh - ${spacing(20)}px);
@@ -82,13 +89,6 @@ const MainPicture = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  & p {
-    margin: 0;
-    font-size: ${GeneralFontSize.TITLE};
-    font-family: Cardo, serif;
-    color: #fff;
-  }
 `;
 
 const Section = styled.section`
@@ -96,8 +96,8 @@ const Section = styled.section`
   margin-top: ${spacing(20)}px;
   position: relative;
 
-  &:first-child {
-    margin-top: 0;
+  @media ${DEVISE_QUERY.sp} {
+    margin-top: ${spacing(16)}px;
   }
 `;
 
@@ -106,13 +106,19 @@ const WorkList = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-itmes: center;
+
+  @media ${DEVISE_QUERY.sp} {
+    & > div {
+      margin-bottom: ${spacing(8)}px;
+    }
+  }
 `;
 
 const Bcg = styled.div`
   width: 100%;
   padding-top: ${spacing(10)}px;
   padding-bottom: ${spacing(10)}px;
-  background-color: ${GeneralColors.Palette.bcgBlue};
+  background-color: ${GeneralColors.Palette.BcgBlue};
 `;
 
 const About = styled.div`
@@ -121,6 +127,11 @@ const About = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: start;
+
+  @media ${DEVISE_QUERY.sp} {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
 `;
 
 const AboutDescription = styled.p`
@@ -131,6 +142,12 @@ const AboutDescription = styled.p`
   letter-spacing: 1px;
   line-height: 64px;
   word-wrap: break-word;
+
+  @media ${DEVISE_QUERY.sp} {
+    width: 80%;
+    text-align: center;
+    padding-right: 0;
+  }
 `;
 
 const AboutImage = styled.img`

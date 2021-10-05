@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GeneralFontSize } from '../consts/StyleConsts';
-import { spacing } from '../utils/StyleUtils';
+import DEVISE_QUERY from 'consts/DeviseSize';
+import { spacing } from 'utils/StyleUtils';
+import { GeneralFontSize } from './styles/GeneralTextStyle';
 
 export const WorkCard = () => (
   <WorkCardWrapper>
@@ -21,6 +22,10 @@ const WorkCardWrapper = styled.div`
   &:last-child {
     margin-right: 0;
   }
+
+  @media ${DEVISE_QUERY.sp} {
+    margin-right: 0;
+  }
 `;
 
 const WorkImage = styled.img`
@@ -35,6 +40,10 @@ const WorkDetails = styled.div`
   & p {
     word-wrap: break-word;
     letter-spacing: 1.2px;
+  }
+
+  @media ${DEVISE_QUERY.sp} {
+    text-align: center;
   }
 `;
 
